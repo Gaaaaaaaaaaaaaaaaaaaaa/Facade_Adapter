@@ -7,5 +7,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 public class PedidoRepository {
+    private  List<String> pedidos = new ArrayList<>();
     
+    
+    public void guardarPedido(String pedido){
+        pedidos.add(pedido);
+        System.out.println("Pedido guardado correctamente en el repositorio.");
+    }
+    public List<String> obtenerPedidos(){
+         return pedidos;
+    }
+   
 }
