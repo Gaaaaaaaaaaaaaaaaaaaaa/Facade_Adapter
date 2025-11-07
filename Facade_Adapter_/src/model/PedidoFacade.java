@@ -9,8 +9,8 @@ public class PedidoFacade {
     private Estrategia_Impuesto estrategia_Impuesto;
     private PedidoRepository pedido_Repository;
     private Factura_Servicio factura_Servicio;
-
-    public PedidoFacade() {
+    
+    public PedidoFacade(Estrategia_Impuesto estrategia_Impuesto) {
         this.stock_servicio = new Stock_Servicio();
         this.estrategia_Impuesto = estrategia_Impuesto;
         this.pedido_Repository = new PedidoRepository();
