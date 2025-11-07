@@ -7,13 +7,13 @@ package model;
 public class PedidoFacade {
     private Stock_Servicio stock_servicio;
     private Estrategia_Impuesto estrategia_Impuesto;
-    private Pedido_Servicio pedido_Servicio;
+    private PedidoRepository pedido_Repository;
     private Factura_Servicio factura_Servicio;
 
     public PedidoFacade() {
         this.stock_servicio = new Stock_Servicio();
         this.estrategia_Impuesto = estrategia_Impuesto;
-        this.pedido_Servicio = new Pedido_Servicio();
+        this.pedido_Repository = new PedidoRepository();
         this.factura_Servicio = new Factura_Adapter(new LegacyBillingSystem());
     }
 
@@ -26,8 +26,7 @@ public class PedidoFacade {
         
         double total = subtotal+ igv;
 
-        pedido_Servicio.registrar(cliente, producto, cantidad, total);
-        factura_Servicio.generarFactura(cliente, total);
+        
 
         return new PedidoResultado(cliente, producto, cantidad, subtotal, igv, total);
     }
