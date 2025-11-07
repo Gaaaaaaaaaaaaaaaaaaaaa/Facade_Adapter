@@ -10,7 +10,7 @@ public class PedidoRepository {
     private  List<String> pedidos = new ArrayList<>();
     
     
-    public void guardarPedido(String pedido){
+    public void guardarPedido(String pedido, String producto, int cantidad, double total){
         pedidos.add(pedido);
         System.out.println("Pedido guardado correctamente en el repositorio.");
     }

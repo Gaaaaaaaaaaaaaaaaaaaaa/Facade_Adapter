@@ -26,7 +26,11 @@ public class PedidoFacade {
         
         double total = subtotal+ igv;
 
+        pedido_Repository.guardarPedido(cliente, producto, cantidad, total);
         
+        factura_Servicio.generarFactura(cliente, total);
+        
+       
 
         return new PedidoResultado(cliente, producto, cantidad, subtotal, igv, total);
     }
