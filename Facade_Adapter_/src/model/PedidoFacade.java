@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PedidoFacade {
+public class PedidoFacade implements Sujeto {
     private Stock_Servicio stock_servicio;
     private Estrategia_Impuesto estrategia_Impuesto;
     private PedidoRepository pedido_Repository;
     private Factura_Servicio factura_Servicio;
+    private List<Observador> observadores = new ArrayList<>();
     
     public PedidoFacade(Estrategia_Impuesto estrategia_Impuesto) {
         this.stock_servicio = new Stock_Servicio();
@@ -30,8 +33,27 @@ public class PedidoFacade {
         
         factura_Servicio.generarFactura(cliente, total);
         
-       
+        
+       notificarObservadores("Pedido procesado correctamente para: " + cliente); //Notificamos a los observadores
 
         return new PedidoResultado(cliente, producto, cantidad, subtotal, igv, total);
+    }
+// IMPLEMENTE LOS VOIDS DE SUJETO
+    @Override
+    public void agregarObservador(Observador o) {
+        observadores.add(o);
+    }
+
+    @Override
+    public void eliminarObservador(Observador o) {
+         observadores.remove(o);
+    }
+
+    @Override
+    public void notificarObservadores(String mensaje) {
+        for (Observador o : observadores) {
+    o.notificar(mensaje);
+                          }
+
     }
 }
