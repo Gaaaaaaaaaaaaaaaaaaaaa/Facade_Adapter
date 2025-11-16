@@ -32,7 +32,7 @@ public class PedidoFacade implements Sujeto {
         pedido_Repository.guardarPedido(cliente, producto, cantidad, total);
         
         factura_Servicio.generarFactura(cliente, total);
-        
+        notificarObservadores("Factura generada para " + cliente);
         
        notificarObservadores("Pedido procesado correctamente para: " + cliente); //Notificamos a los observadores
 
