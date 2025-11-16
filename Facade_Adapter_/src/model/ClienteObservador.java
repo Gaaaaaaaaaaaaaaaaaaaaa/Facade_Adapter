@@ -8,6 +8,16 @@ package model;
  *
  * @author PC
  */
-public class ClienteObservador {
+public class ClienteObservador implements Observador {
     
-}
+    private String nombre;
+    
+    public ClienteObservador(String nombre) {
+        this.nombre = nombre;
+    }
+    @Override
+    public void notificar(String mensaje) {
+        System.out.println("[CLIENTE " + nombre + "] Notificacion: " + mensaje);
+
+    }
+}    

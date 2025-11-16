@@ -4,11 +4,7 @@
  */
 package model;
 
-/**
- *
- * @author PC
- */
-package model;
+
 
 public class HiloProcesarPedido extends Thread {
 
@@ -32,7 +28,7 @@ public class HiloProcesarPedido extends Thread {
             System.out.println("[HILO PEDIDO] Procesando pedido...");
             facade.procesarPedido(cliente, producto, cantidad, precio);
         } catch (Exception e) {
-            System.out.println("Error procesando pedido: " + e.getMessage());
+            System.out.println("[HILO PEDIDO] Error: " + e.getMessage());
         }
     }
 }

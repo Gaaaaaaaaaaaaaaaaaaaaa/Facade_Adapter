@@ -8,6 +8,9 @@ package model;
  *
  * @author PC
  */
-public class InventarioObservador {
-    
+public class InventarioObservador implements Observador {
+    @Override
+    public void notificar(String mensaje) {
+        System.out.println("[INVENTARIO] Actualizando inventario: " + mensaje);
+    }
 }

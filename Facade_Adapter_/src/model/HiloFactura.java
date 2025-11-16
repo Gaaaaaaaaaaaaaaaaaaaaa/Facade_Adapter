@@ -8,19 +8,32 @@ package model;
 
 public class HiloFactura extends Thread {
 
-    private Factura_Servicio factura;
-    private String cliente;
-    private double total;
+    private PedidoFacade facade;
 
-    public HiloFactura (Factura_Servicio factura, String cliente, double total) {
-        this.factura = factura;
-        this.cliente = cliente;
-        this.total = total;
+    public HiloFactura(PedidoFacade facade) {
+        this.facade = facade;
     }
 
     @Override
-    public void run() {
+public void run() {
+    try {
+        Thread.sleep(400); 
         System.out.println("[HILO FACTURA] Generando factura...");
-        factura.generarFactura(cliente, total);
+
+        PedidoRepository repo = facade.getRepositorio();
+        PedidoResultado ultimo = repo.getUltimoPedido();
+
+        if (ultimo == null) {
+            System.out.println("[HILO FACTURA] No hay pedidos para facturar.");
+            return;
+        }
+
+        Factura_Servicio factura = facade.getFacturaServicio();
+        factura.generarFactura(ultimo.cliente, ultimo.total);
+
+    } catch (Exception e) {
+        System.out.println("[HILO FACTURA] Error: " + e.getMessage());
     }
+}
+
 }
