@@ -16,5 +16,12 @@ public class PedidoController {
         this.facade = facade;
         this.view = view;
     }
-    public void registrarPedido(String cliente, String producto, int cantidad, double)
+    public void registrarPedido(String cliente, String producto, int cantidad, double precioUnitario){
+        try {
+            PedidoResultado resultado = facade.procesarPedido(cliente, producto, cantidad, precioUnitario);
+            view.mostrarComprobante(resultado);
+        } catch (Exception e) {
+            view.mostrarError(e.getMessage());
+        }
+    }
 }
